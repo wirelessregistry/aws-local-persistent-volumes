@@ -15,11 +15,11 @@ then
   echo "/dev/md0   /mnt/disks/dev/md0       ext4    defaults,nofail   0   2" >/tmp/mnt_entry
   sh -c 'cat /tmp/mnt_entry  >> /etc/fstab'
 else
-    for diskname in $diskstripped; do
+  for diskname in $diskstripped; do
     wipefs -fa "/dev/$diskname" && mkfs.ext4 "/dev/$diskname" || true
     mkdir -p /mnt/disks/dev/"$diskname"
     mount "/dev/$diskname" /mnt/disks/dev/"$diskname"
     echo "/dev/$diskname   /mnt/disks/dev/$diskname       ext4    defaults,nofail   0   2" >/tmp/mnt_entry
     sh -c 'cat /tmp/mnt_entry  >> /etc/fstab'
-    done
+  done
 fi
