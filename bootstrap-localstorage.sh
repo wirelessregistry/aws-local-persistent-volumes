@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-disks=$(ls /dev/nvme*n1 | grep nvme | awk '{print $1}')
 diskstripped=$(lsblk -noheadings -ido NAME |tr '\n' ' ')
 numdisks=$(lsblk -noheadings -ido NAME |wc -w)
 echo "NVME Disks: $diskstripped"
